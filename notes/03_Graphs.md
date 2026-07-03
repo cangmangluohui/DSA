@@ -15,3 +15,21 @@
 ### 代码模板
 > 图存储及BFS/DFS标准模板见：[graph_traversal.cpp](../src/04_Graphs/graph_traversal.cpp)
 > 拓扑排序代码见 [topological_sort.cpp](../src/04_Graphs/topological_sort.cpp)
+
+---
+
+## 2. 最短路径算法 (Shortest Path)
+
+### 核心思想
+寻找图中两个节点之间权重之和最小的路径。
+- **Dijkstra**：解决**非负权**单源最短路径问题，基于贪心策略。
+- **Bellman-Ford / SPFA**：解决**含负权**边的单源最短路径问题，可检测负环。
+- **Floyd-Warshall**：解决**多源**最短路径问题，基于动态规划。
+
+### 核心避坑指南
+1. **负权边陷阱**：如果图中存在负权边，**严禁使用 Dijkstra**，必须使用 Bellman-Ford 或 SPFA。
+2. **数据范围溢出**：初始化距离数组 `dist` 时，无穷大 `INF` 的取值要适中（如 `0x3f3f3f3f`），防止加法运算后整数溢出变成负数。
+3. **松弛操作顺序**：在 SPFA 中，只有当节点不在队列中时才将其入队，避免队列爆炸导致超时。
+
+### 代码模板
+> 完整运行代码见：[shortest_path.cpp](../src/04_Graphs/shortest_path.cpp)
